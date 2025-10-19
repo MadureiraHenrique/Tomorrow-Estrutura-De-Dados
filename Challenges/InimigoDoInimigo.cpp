@@ -2,7 +2,6 @@
 #include <vector>
 
 using namespace std;
-
 struct WarriorStats {
     string name;
     int enemyHealth;
@@ -25,29 +24,34 @@ int main() {
         } else if(warriorStats[i].name == "Cyberman") {
             maxCyberman++;
         }
-        
     }
     
     int health;
     cin >> health;
 
-    int dalek = 0, cyberman = 0;
+    int daleksDefeated = 0, cybermanDefeated = 0;
+
+    bool ajuda = false;
 
     for (int i = 0; i < amountOfEnemys; i++) {
-        if (warriorStats[i].name == "Dalek" && (health > warriorStats[i].enemyHealth)) {
-            dalek++;
-            health = health - warriorStats[i].enemyHealth;
-        } else if (warriorStats[i].name == "Cyberman" && (health > warriorStats[i].enemyHealth)) {
-            cyberman++;
-            health = health - warriorStats[i].enemyHealth;
+        if(warriorStats[i].enemyHealth > health) {
+            ajuda = true;
+            break;
+        }
+
+        health -= warriorStats[i].enemyHealth;
+
+        if (warriorStats[i].name == "Dalek") {
+            daleksDefeated++;
+        } else if (warriorStats[i].name == "Cyberman") {
+            cybermanDefeated++;
         }
     }
     
-    if(health >= 0 && (dalek == maxDalek && cyberman == maxCyberman)) {
-        cout << "Consegui derrotar todos!";
+    if(ajuda) {
+        cout << "Consegui derrotar " << daleksDefeated << " daleks e " << cybermanDefeated << " cyberman. Preciso de ajuda!";
     } else {
-        cout << "Consegui derrotar " << dalek << " daleks e " << cyberman << " cyberman." << endl;
-        cout << "Preciso de ajuda!" << endl;
+        cout << "Consegui derrotar todos!";
     }
 
     return 0;
