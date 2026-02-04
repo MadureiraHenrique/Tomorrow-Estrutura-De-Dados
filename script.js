@@ -116,17 +116,6 @@ actionButton.addEventListener('click', () => {
     addNewQuestion();
 });
 
-// Event listener para hover effect sonoro (opcional - feedback visual apenas)
-actionButton.addEventListener('mouseenter', () => {
-    actionButton.style.transform = 'translateY(-3px)';
-});
-
-actionButton.addEventListener('mouseleave', () => {
-    if (!actionButton.classList.contains('clicked')) {
-        actionButton.style.transform = '';
-    }
-});
-
 // Log de inicialização
 console.log('Script de Q&A inicializado com sucesso!');
 console.log('Botão pronto para adicionar novas perguntas.');
